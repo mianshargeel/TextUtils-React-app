@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function FormTextArea(props) {
-    const [text, setText] = useState("Please write here...");
+    const [text, setText] = useState("");
     const handleOnClick = (e) => {
         setText(e.target.value);
     }
@@ -62,10 +62,17 @@ repeat()
 valueOf()
 trim()*/
     return (<>
-        <div className="container">
-            <h1> Enter the <span className=" badge bg-secondary">Text</span> to Make Different Opperation </h1><hr />
+        <div className="container" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
+            <h1> Enter the Text to Make Different Opperation </h1><hr />
             <div className=" input-group">
-                <textarea className="form-control" id='myForm' value={text} onChange={handleOnClick} aria-label="With textarea" rows={7}></textarea>
+                <textarea className="form-control" id='myForm' value={text} onChange={handleOnClick}
+                    style={
+                        {
+                            backgroundColor: props.mode === 'dark' ? '#524c6b' : 'white',
+                            color: props.mode === 'dark' ? 'white' : 'black'
+                        }
+                    } aria-label="With textarea" rows={7}></textarea>
+                {/* Note in above lines in style we used 1st {} for jsx 2nd for js-object and in 2nd {} we passed object for bg-colorand text-color*/}
             </div>
             <div >
                 <button className="btn btn-dark mt-4 mx-1" onClick={convertToUpCase}>Convert to UpperCase</button>
@@ -79,25 +86,22 @@ trim()*/
 
         {/* end of ====================================================== 1st container  */}
 
-        <div className="container my-4 ">
+        <div className="container my-4 " style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
 
             <h2>
-                Your<span className=" badge bg-secondary">Text</span>Summary Here
+                Your Text Summary Here
             </h2>
 
-            <p className='text-white '>
+            <p >
                 <b> You have {text.split(" ").length} Words and {text.length} characters in your Paragraph.</b>
             </p><hr />
             {/* The split() method divides a String into an ordered list of substrings, puts these substrings into an array, and returns the array. And .length will returns length of that array  */}
-            <p className='text-white '>
+            <p >
                 <b> {0.008 * text.split(" ").length} Minutes to read this your Text.</b>
             </p><hr />
-            <h2>
-                <span className=" badge bg-secondary">Text</span>Preview
-            </h2>
-            <p className='text-white'>
-                {text}
-            </p>
+            <h2> Text Preview </h2>
+            {/* using some logic */}
+            <p > {text.length > 0 ? text : "Enter Some Text in to Text Box Above to See Preview here."} </p>
 
         </div><hr /> {/* end of 2nd container */}
     </>)
