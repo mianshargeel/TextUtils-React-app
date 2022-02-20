@@ -8,24 +8,31 @@ function FormTextArea(props) {
     const convertToUpCase = () => {
         const newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to Upper Case.", "success");
     }
     const convertToLrCase = (e) => {
         const newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to Lower Case.", "success");
+
     }
     const clearText = () => {
         setText(" ");
+        props.showAlert("Text Cleared Completly.", "warning");
+
     }
     const converToCalmelCase = () => {
         const newText = text.replace(/([A-Z])/g, "$1"); //using regular expresion
         const camCaseText = newText.charAt(0).toUpperCase() + newText.slice(1);
         setText(camCaseText);
+        props.showAlert("Text Converted to CamelCase.", "success");
         console.log(camCaseText);
     }
     const handleCopy = () => {
         let text = document.getElementById("myForm");
         text.select(); //to select all text
         navigator.clipboard.writeText(text.value); //The Clipboard interface's writeText() property writes the specified text string to the system clipboard. Text may be read back using either read() or readText().
+        props.showAlert("Your Text Copied to Clipboard.", "success");
 
     }
     const handleExtraSpaces = () => {
@@ -34,6 +41,8 @@ function FormTextArea(props) {
         newText The split() method divides a String into an ordered list of substrings, puts these substrings 
         into an array, and returns the array. */
         setText(newText.join(" "));//join() add one space in new string
+        props.showAlert("Extra Space in Your Text has been Removed.", "success");
+
     }
     /*
     var result = text.replace( /([A-Z])/g, " $1" );
