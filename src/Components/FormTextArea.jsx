@@ -77,7 +77,7 @@ trim()*/
                 <textarea className="form-control" id='myForm' value={text} onChange={handleOnClick}
                     style={
                         {
-                            backgroundColor: props.mode === 'dark' ? '#524c6b' : 'white',
+                            backgroundColor: props.mode === 'dark' ? 'rgb(126 115 173)' : 'white',
                             color: props.mode === 'dark' ? 'white' : 'black'
                         }
                     } aria-label="With textarea" rows={7}></textarea>
@@ -96,13 +96,13 @@ trim()*/
         {/* end of ====================================================== 1st container  */}
 
         <div className="container my-4 " style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-
+            {/* fixing color for text in this div */}
             <h2>
                 Your Text Summary Here
             </h2>
 
             <p >
-                <b> You have {text.split(" ").length} Words and {text.length} characters in your Paragraph.</b>
+                <b> You have {text.split(" ").filter(e => e !== "").length} Words and {text.length} characters in your Paragraph.</b>
             </p><hr />
             {/* The split() method divides a String into an ordered list of substrings, puts these substrings into an array, and returns the array. And .length will returns length of that array  */}
             <p >
